@@ -6,7 +6,8 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Radio from '@mui/material/Radio';
 import {DataGrid} from '@mui/x-data-grid';
-import {SEMESTER_LIST} from '../constants.js'
+import {SEMESTER_LIST} from '../constants.js'; 
+import AddStudent from './AddStudent'; 
 
 // user selects from a list of  (year, semester) values
 class Semester extends Component {
@@ -61,6 +62,11 @@ class Semester extends Component {
                       semester:SEMESTER_LIST[this.state.selected].name}} 
                 variant="outlined" color="primary" style={{margin: 10}}>
                 Get Schedule
+              </Button>
+              <Button component={Link} 
+                      to={{pathname:'/student'}} 
+                variant="outlined" color="primary" style={{margin: 10}}>
+                Add Student
               </Button>
           </div>
       </div>
