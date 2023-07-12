@@ -6,38 +6,41 @@ import TextField from '@mui/material/TextField';
 
 
 // properties AddStudent is required, function called when Add clicked.
+// Add a button on the home page for add a new student with name, email. Add a new route in App.js  
 class AddStudent extends Component {
 	constructor(props){
         super(props);
+        // Set the status code to 0.
         this.state=({student_email:'', student_name:'', student_id: 0, status_code:0});
     }
     
     handleSubmit = () =>{
         fetch('http://localhost:8080/student/',
         {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            id: this.state.student_id,
-            student_email: this.state.student_email,
-            student_name: this.state.student_name,
-            status_code: this.state.status_code     
-        })
-        }).then(res => {
-            if (res.ok) {
-              toast.success("Student Succesfully Registered", {
-                  position: toast.POSITION.BOTTOM_LEFT
-              });
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				id: this.state.student_id,
+				student_email: this.state.student_email,
+				student_name: this.state.student_name,
+				status_code: this.state.status_code
+			})
+		}).then(res => {
+			if (res.ok) {
+				toast.success("Student Succesfully Added", {
+					position: toast.POSITION.BOTTOM_LEFT
+				});
             } else {
-              toast.error("Student Registreation Failed", {
-                  position: toast.POSITION.BOTTOM_LEFT
-              });
-              console.error('Post http status =' + res.status);
-        }}).catch(err => {
-            console.error(err);
-          }) 
+				toast.error("Error - Student Registreation Failed", {
+					position: toast.POSITION.BOTTOM_LEFT
+				});
+				console.error('Post http status =' + res.status);
+			}
+		}).catch(err => {
+			console.error(err);
+		}) 
     }
     
     handleChange = (event) =>  {
@@ -48,7 +51,7 @@ class AddStudent extends Component {
 		const {student_email, student_name, student_id, status_code} = this.state;
         return (
 			<div>
-	            <b>Register Student</b>
+	            <b>Add Student</b>
 	            
 	            <br/>
 	            <br/>
